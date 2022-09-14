@@ -40,6 +40,23 @@ void SearchContact(){
     else printf("검색한 사용자를 찾을 수 없습니다\n");
 }
 
+void DeleteContact(){
+    char delete[30];
+    printf("삭제할 이름 입력 : ");
+    scanf("%s",delete);
+    for(int i=0;i<idx;i++){
+        if(strcmp(arr[i].name,delete) == 0){
+            for(int j=i;j<idx-1;j++)
+                arr[j] = arr[j+1];
+            idx--;
+            printf("삭제 완료.\n");
+            return;
+        }
+    }
+    printf("삭제할 데이터가 없습니다.\n");
+    
+}
+
 enum{
     insert = 1, search, delete, update
 
@@ -56,6 +73,9 @@ void Controller(){
             break;
         case search:
             SearchContact();
+            break;
+        case delete:
+            DeleteContact();
             break;
         default:
             printf("프로그램 종료\n");
